@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class QLExpressContext extends HashMap<String, Object> implements
-		IExpressContext<String, Object> {
+public class QLExpressContext extends HashMap<String, Object> implements IExpressContext<String, Object> {
 
 	private ApplicationContext context;
 
@@ -16,8 +15,7 @@ public class QLExpressContext extends HashMap<String, Object> implements
 		this.context = aContext;
 	}
 
-	public QLExpressContext(Map<String, Object> aProperties,
-                            ApplicationContext aContext) {
+	public QLExpressContext(Map<String, Object> aProperties, ApplicationContext aContext) {
 		super(aProperties);
 		this.context = aContext;
 	}
@@ -29,8 +27,7 @@ public class QLExpressContext extends HashMap<String, Object> implements
 		Object result = null;
 		result = super.get(name);
 		try {
-			if (result == null && this.context != null
-					&& this.context.containsBean((String) name)) {
+			if (result == null && this.context != null && this.context.containsBean((String) name)) {
 				// 如果在Spring容器中包含bean，则返回String的Bean
 				result = this.context.getBean((String) name);
 			}

@@ -32,20 +32,18 @@ public class QlExpressUtil implements ApplicationContextAware {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public Object execute(String statement, Map<String, Object> context)
-			throws Exception {
+	public Object execute(String statement, Map<String, Object> context) throws Exception {
 		initRunner(runner);
-		IExpressContext expressContext = new QLExpressContext(context,
-				applicationContext);
+		IExpressContext expressContext = new QLExpressContext(context, applicationContext);
 		return runner.execute(statement, expressContext, null, true, false);
 	}
 
 	private void initRunner(ExpressRunner runner) {
-		if (isInitialRunner == true) {
+		if (isInitialRunner) {
 			return;
 		}
 		synchronized (runner) {
-			if (isInitialRunner == true) {
+			if (isInitialRunner) {
 				return;
 			}
 			try {
